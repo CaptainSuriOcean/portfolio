@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shine Suri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #211610;
+        --bg-card: #2c1e15;
+        --bg-card-alt: #362519;
+        --ink: #f2e6d6;
+        --ink-dim: #b69c82;
+        --ink-faint: #8a735e;
+        --amber: #e0a254;
+        --rust: #be6a32;
+        --sage: #8fa085;
+        --line: rgba(242, 230, 214, 0.1);
+        --display: "Fraunces", serif;
+        --body: "Work Sans", sans-serif;
+        --mono: "JetBrains Mono", monospace;
+        --maxw: 1080px;
+        --r: 16px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        line-height: 1.65;
+        overflow-x: hidden;
+        position: relative;
+        background-image: radial-gradient(
+            circle at 12% 10%,
+            rgba(224, 162, 84, 0.07),
+            transparent 42%
+          ),
+          radial-gradient(
+            circle at 88% 30%,
+            rgba(143, 160, 133, 0.06),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(190, 106, 50, 0.06),
+            transparent 50%
+          ),
+          radial-gradient(rgba(242, 230, 214, 0.05) 1px, transparent 1px);
+        background-size: auto, auto, auto, 26px 26px;
+        background-position: 0 0, 0 0, 0 0, 0 0;
+      }
+
+      ::selection {
+        background: var(--amber);
+        color: var(--bg);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 32px;
+        position: relative;
+      }
+
+      /* ---------- floating stickers ---------- */
+      .sticker {
+        position: absolute;
+        animation: float 7s ease-in-out infinite;
+        pointer-events: none;
+        opacity: 0.85;
+      }
+      .sticker svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(var(--rot, 0deg));
+        }
+        50% {
+          transform: translateY(-14px) rotate(calc(var(--rot, 0deg) + 3deg));
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .sticker {
+          animation: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      @media (max-width: 820px) {
+        .sticker {
+          display: none;
+        }
+      }
+
+      /* ---------- Nav ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(33, 22, 16, 0.82);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav.wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+      }
+      .logo {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 19px;
+        letter-spacing: 0.01em;
+      }
+      .logo span {
+        color: var(--amber);
+      }
+      .navlinks {
+        display: flex;
+        gap: 30px;
+      }
+      .navlinks a {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        transition: color 0.2s ease;
+      }
+      .navlinks a:hover {
+        color: var(--amber);
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative;
+        padding: 110px 0 100px;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sage);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 26px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 26px;
+        height: 1px;
+        background: var(--sage);
+      }
+      h1.name {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(46px, 7.5vw, 84px);
+        line-height: 1.04;
+        max-width: 780px;
+      }
+      h1.name em {
+        font-style: italic;
+        color: var(--amber);
+        font-weight: 500;
+      }
+      .role-line {
+        font-family: var(--body);
+        font-weight: 500;
+        font-size: clamp(16px, 2vw, 19px);
+        color: var(--ink-dim);
+        margin-top: 22px;
+        max-width: 600px;
+      }
+      .hero-desc {
+        max-width: 600px;
+        margin-top: 20px;
+        font-size: 15.5px;
+        color: var(--ink-faint);
+      }
+      .cta-row {
+        display: flex;
+        gap: 16px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.02em;
+        padding: 14px 26px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.25s ease;
+      }
+      .btn.primary {
+        background: var(--amber);
+        color: var(--bg);
+        font-weight: 600;
+      }
+      .btn.primary:hover {
+        background: #eeb56a;
+        transform: translateY(-2px);
+      }
+      .btn.ghost {
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .btn.ghost:hover {
+        border-color: var(--sage);
+        color: var(--sage);
+        transform: translateY(-2px);
+      }
+
+      /* ---------- Section shell ---------- */
+      section {
+        padding: 100px 0;
+        border-top: 1px solid var(--line);
+        position: relative;
+      }
+      .sec-head {
+        margin-bottom: 52px;
+      }
+      .sec-num {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--sage);
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+        display: block;
+        text-transform: uppercase;
+      }
+      .sec-title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(28px, 4vw, 40px);
+      }
+
+      /* ---------- Card base ---------- */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+      }
+
+      /* ---------- About ---------- */
+      .about-wrap {
+        max-width: 740px;
+      }
+      .about-wrap p {
+        color: var(--ink-dim);
+        font-size: 17px;
+        line-height: 1.8;
+      }
+      .about-wrap strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .about-tags {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .about-tag {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 15px;
+        color: var(--ink-dim);
+      }
+
+      /* ---------- Experience ---------- */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 8px;
+        bottom: 8px;
+        width: 1px;
+        background: var(--line);
+      }
+      .tl-item {
+        position: relative;
+        padding-left: 42px;
+        margin-bottom: 48px;
+      }
+      .tl-item:last-child {
+        margin-bottom: 0;
+      }
+      .tl-dot {
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--sage);
+      }
+      .tl-item.current .tl-dot {
+        background: var(--amber);
+        border-color: var(--amber);
+        box-shadow: 0 0 0 4px rgba(224, 162, 84, 0.15);
+      }
+      .tl-role {
+        font-family: var(--display);
+        font-size: 21px;
+        font-weight: 600;
+      }
+      .tl-org {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--amber);
+        margin-top: 5px;
+      }
+      .tl-date {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-faint);
+        margin-top: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .tl-list {
+        margin-top: 15px;
+        list-style: none;
+      }
+      .tl-list li {
+        color: var(--ink-dim);
+        font-size: 14.5px;
+        padding-left: 18px;
+        position: relative;
+        margin-bottom: 8px;
+      }
+      .tl-list li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--sage);
+        font-family: var(--mono);
+      }
+
+      /* ---------- Skills ---------- */
+      .skill-groups {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .skill-card {
+        padding: 28px;
+      }
+      .skill-card-title {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--sage);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 16px;
+      }
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        font-family: var(--mono);
+        font-size: 12px;
+        padding: 7px 13px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        color: var(--ink-dim);
+        transition: all 0.2s ease;
+      }
+      .chip:hover {
+        border-color: var(--amber);
+        color: var(--ink);
+      }
+
+      /* ---------- Projects ---------- */
+      .project-card {
+        padding: 0;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .project-card:nth-child(even) .proj-media {
+        order: 2;
+      }
+      .proj-body {
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .proj-media {
+        position: relative;
+        background: var(--bg-card-alt);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        min-height: 280px;
+      }
+      .proj-frame {
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 4/3;
+        border: 1.5px dashed var(--ink-faint);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: var(--ink-faint);
+        background: rgba(242, 230, 214, 0.02);
+        animation: float 8s ease-in-out infinite;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      .proj-frame.has-img {
+        border-style: solid;
+        padding: 0;
+        overflow: hidden;
+      }
+      .proj-frame.has-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .proj-frame .ph-icon {
+        width: 34px;
+        height: 34px;
+        opacity: 0.6;
+      }
+      .proj-frame span {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        text-align: center;
+        padding: 0 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .proj-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .proj-title {
+        font-family: var(--display);
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .proj-badge {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--amber);
+        border: 1px solid var(--amber);
+        border-radius: 999px;
+        padding: 4px 12px;
+        white-space: nowrap;
+      }
+      .proj-stack {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--sage);
+        margin-top: 12px;
+      }
+      .proj-desc {
+        color: var(--ink-dim);
+        margin-top: 16px;
+        font-size: 14.5px;
+      }
+      .proj-links {
+        margin-top: 22px;
+        display: flex;
+        gap: 20px;
+      }
+      .proj-links a {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 2px;
+      }
+      .proj-links a:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+      }
+      .proj-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      @media (max-width: 780px) {
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+        .project-card:nth-child(even) .proj-media {
+          order: 0;
+        }
+      }
+
+      /* ---------- Certifications ---------- */
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .cert-card {
+        background: var(--bg-card);
+        padding: 22px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        border: none;
+        border-radius: 0;
+      }
+      .cert-name {
+        font-size: 14.5px;
+        line-height: 1.4;
+        color: var(--ink);
+      }
+      .cert-org {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--sage);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .cert-date {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-faint);
+      }
+      .cert-id {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--ink-faint);
+        opacity: 0.8;
+      }
+      .cert-links {
+        display: flex;
+        gap: 14px;
+        margin-top: 6px;
+        flex-wrap: wrap;
+      }
+      .cert-links a {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--amber);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        border-bottom: 1px solid transparent;
+      }
+      .cert-links a:hover {
+        border-color: var(--amber);
+      }
+
+      /* ---------- Contact ---------- */
+      .contact-inner {
+        text-align: center;
+        padding: 20px 0;
+        position: relative;
+      }
+      .contact-title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(30px, 5.5vw, 56px);
+      }
+      .contact-title em {
+        font-style: italic;
+        color: var(--amber);
+        font-weight: 500;
+      }
+      .contact-sub {
+        color: var(--ink-dim);
+        margin-top: 16px;
+        font-size: 15px;
+      }
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+      }
+      .contact-links a {
+        font-family: var(--mono);
+        font-size: 13px;
+        padding: 13px 24px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        transition: all 0.25s ease;
+      }
+      .contact-links a:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+        transform: translateY(-2px);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 30px 0;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-faint);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      @media (max-width: 780px) {
+        .navlinks {
+          display: none;
+        }
+        .skill-groups {
+          grid-template-columns: 1fr;
+        }
+        .cert-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ sticker icon library ============ -->
+    <svg width="0" height="0" style="position: absolute">
+      <defs>
+        <symbol id="ic-coffee" viewBox="0 0 48 48">
+          <path
+            d="M8 18h26v12a10 10 0 0 1-10 10H18a10 10 0 0 1-10-10V18z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M34 20h3a5 5 0 0 1 0 10h-3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M15 6c-2 3 2 4 0 7M22 6c-2 3 2 4 0 7M29 6c-2 3 2 4 0 7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </symbol>
+        <symbol id="ic-bean" viewBox="0 0 48 48">
+          <path
+            d="M35 8C20 8 8 20 8 32c0 5 3.5 8 8 8 15 0 27-12 27-24 0-5-3.5-8-8-8z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M14 34C14 22 22 12 34 10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </symbol>
+        <symbol id="ic-gear" viewBox="0 0 48 48">
+          <circle
+            cx="24"
+            cy="24"
+            r="8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M24 4v6M24 38v6M44 24h-6M10 24H4M37.5 10.5l-4.2 4.2M14.7 33.3l-4.2 4.2M37.5 37.5l-4.2-4.2M14.7 14.7l-4.2-4.2"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </symbol>
+        <symbol id="ic-headphones" viewBox="0 0 48 48">
+          <path
+            d="M8 26v-2a16 16 0 0 1 32 0v2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <rect
+            x="6"
+            y="26"
+            width="9"
+            height="14"
+            rx="4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <rect
+            x="33"
+            y="26"
+            width="9"
+            height="14"
+            rx="4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+        </symbol>
+        <symbol id="ic-book" viewBox="0 0 48 48">
+          <path
+            d="M24 12c-4-3-10-4-16-3v27c6-1 12 0 16 3 4-3 10-4 16-3V9c-6-1-12 0-16 3z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path d="M24 12v27" stroke="currentColor" stroke-width="2" />
+        </symbol>
+        <symbol id="ic-pencil" viewBox="0 0 48 48">
+          <path
+            d="M30 8l10 10L15 43H5V33z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path d="M25 13l10 10" stroke="currentColor" stroke-width="2" />
+        </symbol>
+        <symbol id="ic-plant" viewBox="0 0 48 48">
+          <path
+            d="M14 44h20l-2-14H16z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path d="M24 30V16" stroke="currentColor" stroke-width="2" />
+          <path
+            d="M24 22c0-8 6-12 12-12 0 8-6 12-12 12z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M24 26c0-6-5-10-11-10 0 6 5 10 11 10z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+        </symbol>
+        <symbol id="ic-keyboard" viewBox="0 0 48 48">
+          <rect
+            x="5"
+            y="14"
+            width="38"
+            height="22"
+            rx="3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M11 21h2M17 21h2M23 21h2M29 21h2M35 21h2M11 27h2M17 27h2M23 27h2M29 27h2M35 27h2M14 32h20"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </symbol>
+        <symbol id="ic-brackets" viewBox="0 0 48 48">
+          <path
+            d="M17 12L7 24l10 12M31 12l10 12-10 12"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </symbol>
+        <symbol id="ic-mug" viewBox="0 0 48 48">
+          <path
+            d="M10 16h20v16a8 8 0 0 1-8 8h-4a8 8 0 0 1-8-8V16z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M30 20h4a4 4 0 0 1 0 8h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M15 8c-1.5 2 1.5 3 0 5M20 8c-1.5 2 1.5 3 0 5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </symbol>
+        <symbol id="ic-image" viewBox="0 0 48 48">
+          <rect
+            x="6"
+            y="8"
+            width="36"
+            height="32"
+            rx="3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <circle
+            cx="17"
+            cy="19"
+            r="3.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M6 32l10-9 8 7 6-6 12 11"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header>
+      <nav class="wrap">
+        <div class="logo">Shine<span> </span>Suri</div>
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certs">Certs</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero wrap" style="border-top: none">
+      <div
+        class="sticker"
+        style="
+          top: 6%;
+          left: 1%;
+          width: 52px;
+          height: 52px;
+          color: var(--amber);
+          --rot: -8deg;
+          animation-delay: 0s;
+        "
+      >
+        <svg><use href="#ic-coffee" /></svg>
+      </div>
+      <div
+        class="sticker"
+        style="
+          top: 12%;
+          right: 6%;
+          width: 40px;
+          height: 40px;
+          color: var(--sage);
+          --rot: 10deg;
+          animation-delay: 0.5s;
+        "
+      >
+        <svg><use href="#ic-bean" /></svg>
+      </div>
+      <div
+        class="sticker"
+        style="
+          top: 46%;
+          left: 8%;
+          width: 34px;
+          height: 34px;
+          color: var(--rust);
+          --rot: -6deg;
+          animation-delay: 1s;
+        "
+      >
+        <svg><use href="#ic-brackets" /></svg>
+      </div>
+      <div
+        class="sticker"
+        style="
+          bottom: 4%;
+          right: 2%;
+          width: 56px;
+          height: 56px;
+          color: var(--amber);
+          --rot: 8deg;
+          animation-delay: 1.4s;
+        "
+      >
+        <svg><use href="#ic-headphones" /></svg>
+      </div>
+      <div
+        class="sticker"
+        style="
+          bottom: 14%;
+          left: 2%;
+          width: 38px;
+          height: 38px;
+          color: var(--sage);
+          --rot: -10deg;
+          animation-delay: 0.8s;
+        "
+      >
+        <svg><use href="#ic-gear" /></svg>
+      </div>
+
+      <!-- <div class="eyebrow">Vadodara-based · currently building at GACL</div> -->
+      <h1 class="name">
+        Shine Suri engineering things with <em>care</em> and a strong cup of
+        coffee.
+      </h1>
+      <p class="role-line">
+        Computer Science student working across computer vision, machine
+        learning, full-stack development and data analytics.
+      </p>
+      <p class="hero-desc">
+        <!-- B.Tech CS student building AI-driven systems — from plant-growth pipelines at IISc Bengaluru to fraud detection at Infosys Springboard to enterprise reporting at GACL.  -->
+        I like problems where pixels, data, and algorithms meet.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:ssuri2327@gmail.com"
+          >Get in touch →</a
+        >
+        <a
+          class="btn ghost"
+          href="https://github.com/shineeeeeeeeeeee"
+          target="_blank"
+          rel="noopener"
+          >View GitHub</a
+        >
+      </div>
+    </section>
+
+    <section id="about" class="wrap">
+      <div
+        class="sticker"
+        style="
+          top: 4%;
+          right: 2%;
+          width: 36px;
+          height: 36px;
+          color: var(--sage);
+          --rot: 12deg;
+          animation-delay: 0.3s;
+        "
+      >
+        <svg><use href="#ic-plant" /></svg>
+      </div>
+      <div class="sec-head">
+        <br>
+        <br>
+        <span class="sec-num">01 / About</span>
+        <h2 class="sec-title">To know me a little :)</h2>
+      </div>
+      <div class="about-wrap">
+        <p>
+          I'm currently a <strong>B.Tech Computer Science student</strong> at
+          GSFC University, working across the stack that sits between raw data
+          and a working system - model, pipeline, dashboard, and everything that
+          connects them. My path so far has run through different organizations
+          (check out my experience section), but outside of internships and works, I
+          watch movies and series (the only thing that keeps me going, if you got any that keeps you stuck with it for hours please let me know too).
+        </p>
+        <div class="about-tags">
+          <!-- <span class="about-tag">Computer Vision</span> -->
+          <span class="about-tag">Machine Learning</span>
+          <span class="about-tag">Data Analytics</span>
+          <span class="about-tag">Full-Stack Dev</span>
+          <span class="about-tag">Cybersecurity</span>
+          <span class="about-tag">DSA - Java</span>
+        </div>
+        <br>
+        <br>
+      </div>
+    </section>
+
+    <section id="projects" class="wrap">
+      <div
+        class="sticker"
+        style="
+          top: 2%;
+          left: 2%;
+          width: 36px;
+          height: 36px;
+          color: var(--sage);
+          --rot: -10deg;
+          animation-delay: 0.4s;
+        "
+      >
+        <svg><use href="#ic-pencil" /></svg>
+      </div>
+      <div class="sec-head">
+        <br>
+        <br>
+        <span class="sec-num">02 / Projects</span>
+        <h2 class="sec-title">Selected work</h2>
+      </div>
+
+      <div class="proj-grid">
+        <div class="card project-card">
+          <div class="proj-body">
+            <div class="proj-top">
+              <div class="proj-title">Full Stack Chat App</div>
+              <div class="proj-badge">Deployed</div>
+            </div>
+            <div class="proj-stack">
+              MERN · Socket.io · TailwindCSS · DaisyUI · Zustand · JWT
+            </div>
+            <p class="proj-desc">
+              Real-time chat application with live user presence and secure
+              messaging over Socket.io. JWT-based authentication and
+              authorization, global state managed through Zustand, deployed
+              end-to-end with proper environment configuration and error
+              handling on both client and server.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://github.com/shineeeeeeeeeeee/fullstack-chat-app"
+                target="_blank"
+                rel="noopener"
+                >Source →</a
+              >
+              <a
+                href="https://fullstack-chat-app-tlqb.onrender.com"
+                target="_blank"
+                rel="noopener"
+                >Live demo →</a
+              >
+            </div>
+          </div>
+          <div class="proj-media">
+            <!-- PLACEHOLDER: replace this div with <img src="your-screenshot.png"> when ready -->
+            <div class="proj-media">
+              <div class="proj-frame has-img" style="--rot: -2deg; animation-delay: 0.2s">
+                <img src="pic3.png" alt="Chat app screenshot">
+              </div>
+            </div>
+            <!-- <div class="proj-frame" style="--rot: -2deg; animation-delay: 0.2s">
+              <svg class="ph-icon"><use href="#ic-image" /></svg>
+              <span>Project screenshot goes here</span>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="proj-body">
+            <div class="proj-top">
+              <div class="proj-title">RN Wallet - Expense Tracker</div>
+              <div class="proj-badge">Cross-platform</div>
+            </div>
+            <div class="proj-stack">
+              React Native (Expo) · Clerk Auth · Node.js · Express · Render
+            </div>
+            <p class="proj-desc">
+              Cross-platform expense and income tracker built with React Native
+              and Expo. Handles authentication via Clerk, tracks income and
+              expenses with a running balance summary, and supports creating and
+              deleting transactions through a Node.js/Express backend hosted on
+              Render.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://github.com/shineeeeeeeeeeee/RN-wallet-mobile"
+                target="_blank"
+                rel="noopener"
+                >Source →</a
+              >
+            </div>
+          </div>
+          <div class="proj-media">
+            <!-- PLACEHOLDER: replace this div with <img src="your-screenshot.png"> when ready -->
+            <!-- <img src="pic1.png">  -->
+            <div class="proj-media">
+              <div class="proj-frame has-img" style="--rot: -2deg; animation-delay: 0.2s">
+                <img src="pic1.png" alt="screenshot">
+              </div>
+            </div>
+            <!-- <div class="proj-frame" style="--rot: 2deg; animation-delay: 0.7s">
+              <svg class="ph-icon"><use href="pic1.png" /></svg>
+              <span>Project screenshot goes here</span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="wrap">
+      <div
+        class="sticker"
+        style="
+          top: 2%;
+          right: 4%;
+          width: 38px;
+          height: 38px;
+          color: var(--amber);
+          --rot: -8deg;
+          animation-delay: 0.6s;
+        "
+      >
+        <svg><use href="#ic-mug" /></svg>
+      </div>
+      <div class="sec-head">
+        <br>
+        <br>
+        <span class="sec-num">03 / Experience</span>
+        <h2 class="sec-title">Internships & research</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-dot"></div>
+          <div class="tl-role">Data Analytics Intern</div>
+          <div class="tl-org">
+            Gujarat Alkalies & Chemicals Limited (GACL) · Vadodara
+          </div>
+          <div class="tl-date">June 2026 — Present</div>
+          <ul class="tl-list">
+            <li>
+              Performing data modeling, transformation, and reporting automation
+              using DAX, Power Query, and SAP-generated enterprise datasets.
+            </li>
+            <li>
+              Analyzing large-scale industrial datasets to identify trends,
+              optimize reporting workflows, and support data-driven decision
+              making.
+            </li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-org">Indian Institute of Science (IISc) Bangalore</div>
+          <div class="tl-date">December 2025 — April 2026</div>
+          <ul class="tl-list">
+            <li>
+              Conducted interdisciplinary research combining non-thermal plasma
+              technology and computational analysis to study seed germination
+              and early plant growth.
+            </li>
+            <li>
+              Developed an automated seedling growth measurement pipeline using
+              OpenCV for pre-processing, segmentation, and contour-based length
+              estimation.
+            </li>
+            <li>
+              Processed large-scale plant seedling image datasets (300+ images
+              per class) to extract growth metrics and reduce human bias.
+            </li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-role">ML Intern — Fraud Detection</div>
+          <div class="tl-org">Infosys Springboard · Bengaluru</div>
+          <div class="tl-date">November 2024 — January 2025</div>
+          <ul class="tl-list">
+            <li>
+              Detected forged Aadhaar cards using OpenCV to extract name, DOB,
+              and UID from uploaded images and match them against CSV records.
+            </li>
+            <li>
+              Trained a YOLO-based model on labeled Kaggle datasets to classify
+              real vs. fake Aadhaar documents with high accuracy.
+            </li>
+            <li>
+              Built a fraud analytics dashboard using Matplotlib and Pandas to
+              visualize detection patterns and flag suspicious uploads.
+            </li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-role">UAV Systems Trainee</div>
+          <div class="tl-org">C-DAC · Vadodara, Gujarat</div>
+          <div class="tl-date">September 2024 — October 2024</div>
+          <ul class="tl-list">
+            <li>
+              Underwent hands-on training in designing, building, and simulating
+              drones from scratch.
+            </li>
+            <li>
+              Integrated sensors and image capture systems into drone prototypes
+              for analysis tasks.
+            </li>
+            <li>
+              Participated in real-world drone flight sessions, gaining
+              practical knowledge of UAV operations and control systems.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="wrap">
+      <div
+        class="sticker"
+        style="
+          top: 4%;
+          right: 3%;
+          width: 40px;
+          height: 40px;
+          color: var(--rust);
+          --rot: 10deg;
+          animation-delay: 0.9s;
+        "
+      >
+        <svg><use href="#ic-keyboard" /></svg>
+      </div>
+      <div class="sec-head">
+        <br>
+        <br>
+        <span class="sec-num">04 / Skills</span>
+        <h2 class="sec-title">Toolbox</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="card skill-card">
+          <div class="skill-card-title">AI / ML & Computer Vision</div>
+          <div class="chip-row">
+            <span class="chip">TensorFlow</span><span class="chip">OpenCV</span
+            ><span class="chip">YOLO</span> <span class="chip">EasyOCR</span
+            ><span class="chip">NumPy</span><span class="chip">Pandas</span>
+            <span class="chip">Scikit-Learn</span
+            ><span class="chip">Matplotlib</span>
+          </div>
+        </div>
+        <div class="card skill-card">
+          <div class="skill-card-title">Languages</div>
+          <div class="chip-row">
+            <span class="chip">Python</span><span class="chip">C++</span
+            ><span class="chip">C</span><span class="chip">Java</span>
+          </div>
+        </div>
+        <div class="card skill-card">
+          <div class="skill-card-title">Core CS</div>
+          <div class="chip-row">
+            <span class="chip">Data Structures</span
+            ><span class="chip">Algorithms</span>
+            <span class="chip">Operating Systems</span
+            ><span class="chip">DBMS</span>
+            <span class="chip">Computer Networks</span
+            ><span class="chip">OOP</span>
+          </div>
+        </div>
+        <div class="card skill-card">
+          <div class="skill-card-title">Web & Databases</div>
+          <div class="chip-row">
+            <span class="chip">HTML5</span><span class="chip">CSS3</span
+            ><span class="chip">JavaScript</span> <span class="chip">React</span
+            ><span class="chip">Node.js</span><span class="chip">Express</span>
+            <span class="chip">MongoDB</span><span class="chip">PostgreSQL</span
+            ><span class="chip">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs" class="wrap">
+      <div
+        class="sticker"
+        style="
+          top: 3%;
+          right: 2%;
+          width: 34px;
+          height: 34px;
+          color: var(--amber);
+          --rot: 8deg;
+          animation-delay: 1.1s;
+        "
+      >
+        <svg><use href="#ic-book" /></svg>
+      </div>
+      <div class="sec-head">
+        <br>
+        <br>
+        <span class="sec-num">05 / Certifications</span>
+        <h2 class="sec-title">Credentials</h2>
+      </div>
+      <!-- NOTE: href="#" are placeholders — swap in your real LinkedIn/credential links -->
+      <div class="cert-grid">
+
+        <div class="cert-card">
+          <div class="cert-name">Machine Learning for Cyber Security</div>
+          <div class="cert-org">C-DAC India</div>
+          <div class="cert-date">Issued Nov 2025</div>
+          <div class="cert-links">
+            <a href="https://www.linkedin.com/posts/shine-suri-402b01289_machinelearning-cybersecurity-cdachyderabad-ugcPost-7390617470979661824-dBXv/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEYb3QIByELGNterIj_HpcO2B_KXGjm5aBI" target="_blank" rel="noopener">Certificate →</a>
+            <!-- <a href="#" target="_blank" rel="noopener">Score Card →</a> -->
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-name">
+            Oracle Fusion Cloud Applications CX Certified Foundations Associate
+          </div>
+          <div class="cert-org">Oracle</div>
+          <div class="cert-date">Issued Nov 2025</div>
+          <div class="cert-links">
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=A5C515E82DAE80AD958FA7B6C3A85FF91B32B8A8C3FB03338085918CDB9742BB" target="_blank" rel="noopener">Show credential →</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-name">
+            Oracle Fusion Cloud Applications SCM Certified Foundations Associate
+          </div>
+          <div class="cert-org">Oracle</div>
+          <div class="cert-date">Issued Mar 2025</div>
+          <div class="cert-links">
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=9AB9876FBADE6E7C00A5CEB540B4723B13B534F636A4D765E8D9A35FB3326DE7" target="_blank" rel="noopener">Show credential →</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-name">
+            Oracle Fusion Cloud Applications HCM Certified Foundations Associate
+          </div>
+          <div class="cert-org">Oracle</div>
+          <div class="cert-date">Issued Mar 2025</div>
+          <div class="cert-links">
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=9F6DDEFCE9934D511CA0A79AE7C3113A9279BA3133316DE0EB277B97BBC24FFA" target="_blank" rel="noopener">Show credential →</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-name">
+            Oracle Fusion Cloud Applications ERP Certified Foundations Associate
+          </div>
+          <div class="cert-org">Oracle</div>
+          <div class="cert-date">Issued Mar 2025</div>
+          <div class="cert-links">
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=686645930928140EA586F5139E248A2EE0F1B7F48A411E7A473E9CA0B76C74A3" target="_blank" rel="noopener">Show credential →</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-name">
+            Build a Natural Language Processing Solution with Azure AI Language
+          </div>
+          <div class="cert-org">Microsoft</div>
+          <div class="cert-date">Issued Jun 2024</div>
+          <div class="cert-id">Credential ID CCBF186235CAB3C1</div>
+          <div class="cert-links">
+            <a href="https://learn.microsoft.com/en-gb/users/shinesuri-4907/credentials/ccbf186235cab3c1?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener">Show credential →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contact"
+      class="wrap"
+      style="border-bottom: 1px solid var(--line)"
+    >
+      <div
+        class="sticker"
+        style="
+          top: 6%;
+          left: 4%;
+          width: 38px;
+          height: 38px;
+          color: var(--amber);
+          --rot: -8deg;
+          animation-delay: 0.3s;
+        "
+      >
+        <svg><use href="#ic-coffee" /></svg>
+      </div>
+      <div
+        class="sticker"
+        style="
+          bottom: 8%;
+          right: 4%;
+          width: 34px;
+          height: 34px;
+          color: var(--sage);
+          --rot: 10deg;
+          animation-delay: 1s;
+        "
+      >
+        <svg><use href="#ic-gear" /></svg>
+      </div>
+      <div class="contact-inner">
+        <span class="eyebrow" style="justify-content: center"
+          >Open to opportunities</span
+        >
+        <h2 class="contact-title">
+          Let's build something <em>worth shipping.</em>
+        </h2>
+        <p class="contact-sub">
+          Always up for a conversation about code, research, or good coffee.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:ssuri2327@gmail.com">Mail me</a>
+          <!-- <a href="tel:+918698149019">+91 86981 49019</a> -->
+          <a
+            href="https://github.com/shineeeeeeeeeeee"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="www.linkedin.com/in/shine-suri-402b01289" id="linkedin-link">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <div>© 2026 Shine Suri</div>
+      <div>Built with intent, not templates.</div>
+    </footer>
+  </body>
+</html>
